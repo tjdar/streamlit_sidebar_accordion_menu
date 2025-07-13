@@ -31,15 +31,11 @@ root/
 ```
 
 #### Notes
-* `app.py`
-    This is your main app file. It defines the overall layout and the sidebar menu.
-    You can name it anything(e.g., main.py, home.py, etc.).
+* `app.py`: This is your main app file. It defines the overall layout and the sidebar menu. You can name it anything(e.g., main.py, home.py, etc.).
 
-* `pages/` directory
-    Place all your subpage scripts here. The component automatically resolves paths like "sales_dashboard" to pages/sales_dashboard.py.
+* `pages/` directory: Place all your subpage scripts here. The component automatically resolves paths like "sales_dashboard" to pages/sales_dashboard.py.
 
-* `.streamlit/config.toml`
-    To disable Streamlit’s default page navigation, set
+* `.streamlit/config.toml`: To disable Streamlit’s default page navigation, set
 
 ```toml
 [client]
