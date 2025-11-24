@@ -68,7 +68,7 @@ const AccordionItem = React.memo<AccordionItemProps>(({
   setSelectedKey,
   level = 0 
 }) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const isSelected = selectedKey === item.key
   const isDisabled = item.disabled || false
 
