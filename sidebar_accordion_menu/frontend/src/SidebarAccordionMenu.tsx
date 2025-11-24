@@ -16,6 +16,7 @@ interface AccordionItemProps {
   item: MenuItem
   selectedKey: string | null
   setSelectedKey: (key: string) => void
+  initialOpenKeys: string[]
   level?: number
 }
 
@@ -66,9 +67,12 @@ const AccordionItem = React.memo<AccordionItemProps>(({
   item, 
   selectedKey, 
   setSelectedKey,
+  initialOpenKeys, // 👈 Destructure the new argument
   level = 0 
 }) => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(
+    // Set to true if this item's key is in the initialOpenKeys list, otherwise false
+    initialOpenKeys.includes(item.key)
   const isSelected = selectedKey === item.key
   const isDisabled = item.disabled || false
 
@@ -238,6 +242,7 @@ AccordionItem.displayName = 'AccordionItem'
 const SidebarAccordionMenu: React.FC<ComponentProps> = ({ args }) => {
   // Memoize menu structure to prevent unnecessary re-renders
   const menu = useMemo<MenuItem[]>(() => args.menu_structure || [], [args.menu_structure])
+  const initialOpenKeys: string[] = args.initial_open_keys || []
   const [selectedKey, setSelectedKey] = useState<string | null>(null)
 
   // Resize iframe on mount and menu changes
@@ -257,6 +262,7 @@ const SidebarAccordionMenu: React.FC<ComponentProps> = ({ args }) => {
           item={item}
           selectedKey={selectedKey}
           setSelectedKey={setSelectedKey}
+          initialOpenKeys={initialOpenKeys}
         />
       ))}
     </nav>
